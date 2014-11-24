@@ -1,0 +1,43 @@
+Identification:
+	Mahir Gulrajani
+	mahirkg@bu.edu
+
+Purpose:
+	GREP implementation for CS 410 assignment 1 (a1)
+
+Citations:
+	I got all the error functions code online (I cited it in the finds.c executable).
+	I got the basic framework for the entire tree walking algorithm (myftw and dopath methods)
+	from the book's source code.
+	I got the pathalloc.c code and apue.h files from the online source code as well.
+	I got the macro for counting the number of arguments online - the citation is in the file.
+
+How to run the code:
+	To compile it, simply type 'make', 'make all' or 'gcc -c finds finds.c'
+	To run it, you need to type './finds -p path -s "string" [-f c|h|S] [-l]'
+	To clear the executable, simply type 'make clean'.
+	The make command is synonymous to 'gcc -o finds finds.c -m32'
+	The make clean command is synonymous to 'rm finds'
+
+Program prints a warning and quits if:
+	String entered has ? and * next to each other
+	Has non-alphanumeric characters other than requested wilcards
+	If type was specified with an invalid type
+	If wildcard combinations aren't valid:
+		If ? or * are the first character
+		If ? and * appear right after one another (based off of what the Professor said in class)
+	If path wasn't specified by the command line
+	If string wasn't specified by the command line
+	Invalid flags used in commandline
+	Other reasons are listed in comments near the relevant code lines
+
+Current competency:
+	Able to search for a string in a file or directory
+	Able to handle all wildcards except parantheses (the bonus)
+	Able to handle specified type cases
+	Is able to handle the -l case (with or without -f as well)
+	Assumed whitespace cannot be a suitable replacement for the . wildcard (grep lets . replace a space)
+	Able to handle the .* and .? case, though it fails to search for the cases where there are zero instances of the dot
+	my_printf() works for all cases except for %u
+	Assumed that .* meant zero or more instances of a specific character the dot refers to (i.e. e.*r can refer to er, exr, exxr, etc. but not exar)
+	Assuming that we weren't supposed to implement escape characters like \., \* or \?

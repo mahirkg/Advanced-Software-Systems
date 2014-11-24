@@ -1,0 +1,27 @@
+The target platform I used for this assignment is elf64-x86-64, and I ran/compiled this code
+on the Linux Machine called "kanga" in the CS Undergraduate lab. I also conducted the tests that
+generated the stats file information on the same machine ("kanga").
+
+I put the output of my Task B program runs in the stats file located in the TaskB folder.
+I ran getsyms_dl 50 times with RTLD_LAZY and 50 times with RTLD_NOW (on objsym.o)
+I ran getsections_dl 50 times with RTLD_LAZY and 50 times with RTLD_NOW. (on objsym.o)
+** I assumed the number of elapsed cycles of each dlopen() would be the difference between the TSC before
+the dlopen() call and the time count after the dlopen() call. I then divided that by the processor's
+frequency, which I found to be equal to 1600.000 MHz (for each of the 8 processors) when I typed
+'cat /proc/cpuinfo' to find the cost.
+
+Enter the TaskA directory:
+Run "make" to compile all the executables necessary
+Run "make getsections" to compile only what you need to test getsections
+Run "make getsyms" to compile only what you need to test getsyms
+Run "make clean" to wipe the directory of all files except for the .c files
+To test getsections, type "./getsections BINARYFILENAMEHERE" once you have the executable.
+To test getsyms, type "./getsections BINARYFILENAMEHERE" once you have the executable.
+
+Enter the TaskB directory:
+Run "make" to compile all the executables necessary
+Run "make getsections_dl" to compile only what you need to test getsections_dl
+Run "make getsyms_dl" to compile only what you need to test getsyms_dl
+Run "make clean" to wipe the directory of all files except for the .c files
+To test getsections_dl, type "./getsections_dl BINARYFILENAMEHERE RTLDFLAGHERE" once you have the executable.
+To test getsyms_dl, type "./getsyms_dl BINARYFILENAMEHERE RTLDFLAGHERE" once you have the executable.

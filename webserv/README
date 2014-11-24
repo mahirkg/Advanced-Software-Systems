@@ -1,0 +1,21 @@
+Assignment: CS 410 a3 - Web Server with Dynamic Content
+
+Compiling:
+- Type 'make' to get the files all set up
+- To run the web server, type "./webserv port-number [&]"
+- Type 'make clean' to remove the binary executable file
+- To kill the web server if it was backgrounded, type "fg" and then ctrl+c
+
+Teammates:
+- Justina Choi (justinac@bu.edu)
+- Mahir Gulrajani (mahirkg@bu.edu)
+
+Notes & Assumptions:
+- The .cgi files will have something similar to echo/print "Content-type: text/html"
+- It works for all the test cases listed on the assignment page
+- You need to do 'chmod 755 test.cgi' on a cgi file to get the server to access it
+- To use the web browser to call my-histogram, type in "my-histogram.pl?filename?pattern1?pattern2?pattern3?pattern4?pattern5"
+  as the request. Of course, you can vary the number of patterns anywhere from 1 to 5
+- The webserver calls my-histogram which outputs the data in a file called output.dat, then it calls
+  plot.cgi which reads in from output.dat and creates an image file. Then it cats the image file to the
+  browser.

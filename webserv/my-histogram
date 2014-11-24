@@ -1,0 +1,55 @@
+#!/usr/bin/perl
+
+# FILE: my-histogram.pl
+# DATE: May 2, 2014
+# AUTHOR: Justina Choi (justinac@bu.edu)
+# TEAMMATE: Mahir Gulrajani (mahirkg@bu.edu)
+# PURPOSE: Execute in the following format: $perl my-histogram.pl FILENAME PATTERN1 PATTERN2...
+# 	   Searches the given file and counts the number of times the strings within the file
+# 	   match the patterns.
+# 	   CS410 Spring 2014 Prof. West assignment 3
+
+use warnings;
+
+# @ARGV is the array of arguments
+if ($#ARGV < 1) {
+        print "Need at least one arg; must follow the following format:\n";
+        print "perl my-histogram.pl file pattern1 pattern2 ....\n";
+        die;
+}
+
+if ($#ARGV > 5) {
+        print "Too many arguments; can only search for five patterns at a time\n";
+        die;
+}
+
+$filename = $ARGV[0];
+open $searchfile, $filename or die "Could not open $filename: $!\nProcess terminated\n";
+
+@pattern;
+@frequency = (0,0,0,0,0);
+for (my $count = 1; $count <= $#ARGV; $count++) {
+	$pattern[$count-1] = $ARGV[$count];
+}
+
+while ($line = <$searchfile>) {
+	#print $line."Searching for: ";
+	for (my $count = 1; $count <= $#ARGV; $count++) {
+		search($pattern[$count-1], $count-1);
+	}
+}
+
+sub search {
+	my $string = shift;
+	my $index = shift;
+	if ($line =~ /$string/) {
+		$frequency[$index]++;
+	}
+}
+
+my $outfile = "output.dat";
+open (OUTFILE, ">$outfile") or die "ERROR: opening $outfile\n";
+for (my $count = 1; $count <= $#ARGV; $count++) {
+	print OUTFILE $pattern[$count-1]."\t".$frequency[$count-1]."\n";
+}
+close OUTFILE;
